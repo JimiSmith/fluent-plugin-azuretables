@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "fluent-plugin-azuretables"
-  spec.version       = "0.0.1"
+  spec.version       = "0.0.2"
   spec.authors       = ["Anh Phong"]
   spec.email         = ["dev.hibiki@gmail.com"]
   spec.summary       = %q{Fluent plugin to add event record into Azure Tables Storage.}
