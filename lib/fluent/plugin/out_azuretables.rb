@@ -89,9 +89,18 @@ module Fluent
       end
 
       entity = Hash.new
-      entity['partition_key'] = partition_keys.join(@key_delimiter)
-      entity['row_key'] = row_keys.join(@key_delimiter)
-      entity['entity_values'] = record
+      entity['partition_key'] = partition_keys.join(@key_delimiter).encode("UTF-8")
+      entity['row_key'] = row_keys.join(@key_delimiter).encode("UTF-8")
+      encoded_record = {}
+      record.each do |key, val|
+        case val
+        when String
+          encoded_record[key] = val.encode("UTF-8")
+        else
+          encoded_record[key] = val
+        end
+      end
+      entity['entity_values'] = encoded_record
       entity.to_msgpack
     end
 
